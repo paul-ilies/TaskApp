@@ -1,0 +1,13 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer p {
+  text-align: center;
+  font-weight: 100;
+  line-height: 2em;
+}
+.footer p span {
+  color: var(--dark-red);
+}

@@ -1,0 +1,21 @@
+.homepageHeader h1 {
+  text-align: center;
+  background: -webkit-linear-gradient(var(--orange), var(--dark-red));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.homepage--btn ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage--btn a {
+  text-decoration: none;
+  color: inherit;
+}
