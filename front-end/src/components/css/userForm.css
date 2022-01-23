@@ -1,0 +1,65 @@
+.form-container {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  width: 40em;
+  height: 40em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 2em;
+}
+
+.form-header h1 {
+  text-align: center;
+  font-weight: 900;
+  background: -webkit-linear-gradient(var(--orange), var(--dark-red));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.form-inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+.form-inputs > input {
+  width: 50%;
+  height: 3em;
+  border-radius: 5px;
+  border: none;
+}
+.form-inputs > input::placeholder {
+  font-family: inherit;
+  padding-left: 1em;
+}
+.form-inputs > input:focus::placeholder {
+  color: transparent;
+}
+.form-inputs > input:focus {
+  outline: none;
+  transform: scale(1.1);
+}
+
+.form-button button {
+  border: none;
+  color: inherit;
+  font-size: 1em;
+}
+
+.form-error p {
+  background: -webkit-linear-gradient(var(--orange), var(--dark-red));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
