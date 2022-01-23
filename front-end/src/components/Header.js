@@ -3,14 +3,33 @@ import "./css/header.css";
 import { Link } from 'react-router-dom';
 
 
+
+
 const Header = () => {
+
+
+
+
+
+
+
 
 
     return <div className='header'>
         <ul>
             <li className='button-link'><Link to="/login">Sign In</Link></li>
+            <li className='button-link'><Link to="/signup">Sign up</Link></li>
         </ul>
     </div>;
+
+
+
+
+
+
+
+
+
 };
 
 export default Header;

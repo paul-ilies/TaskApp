@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { reduxForm } from 'redux-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
-import { signUp } from "../actions/index";
+import { signUp } from "../actions";
 import UserForm from './utils/UserForm';
+import { Navigate } from "react-router-dom";
 
-let Signup = (props) => {
-    const { handleSubmit } = props;
-    const navigate = useNavigate()
-    const [errorMessage, setErrorMessage] = useState(null)
+let Signup = ({ handleSubmit }) => {
+    const [errorMessage, setErrorMessage] = useState("");
     const dispatch = useDispatch();
 
     const userRegister = useSelector(state => state.auth);
-    const { userInfo, error } = userRegister
+    const { userInfo, error } = userRegister;
 
     useEffect(() => {
         if (error) {
-            setErrorMessage(error.response.data.error)
-            setTimeout(() => {
-                setErrorMessage(null)
-            }, 2000);
+            const errorTimer = setTimeout(() => {
+                setErrorMessage(error.response.data.error)
+            }, 2000)
+            // if error set the error as default from back-end
+            // setErrorMessage(error.response.data.error)
+            // setTimeout(() => {
+            //     setErrorMessage("")
+            // }, 2000)
+            return () => {
+                clearInterval(errorTimer)
+            }
         }
-
-
     }, [error])
 
-
-    const onSubmit = async ({ email, password }) => {
-        dispatch(await signUp(email, password))
+    const onSubmit = ({ email, password }) => {
+        dispatch(signUp(email, password))
 
     }
 
@@ -38,16 +40,14 @@ let Signup = (props) => {
                 title="Sign Up"
                 buttonText="Sign Up"
                 error={errorMessage}
+
             />
-        </>;
+        </>
+    } else {
+        return <Navigate to="/" />
     }
+}
 
-    else {
-        navigate("/tasks")
-    }
-
-
-};
 
 Signup = reduxForm({ form: "signup" })(Signup)
 

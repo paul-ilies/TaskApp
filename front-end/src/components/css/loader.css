@@ -1,0 +1,46 @@
+.loader {
+  width: 100%;
+
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.short {
+  width: 0.5%;
+  height: 50px;
+  background-color: #4d4d4c;
+  margin: 5px;
+  animation: short 0.2s infinite alternate;
+}
+.long {
+  width: 0.5%;
+  height: 100px;
+  background-color: #ff0513;
+  margin: 5px;
+  animation: long 0.2s infinite alternate;
+}
+
+@keyframes short {
+  0% {
+    height: 50px;
+  }
+  50% {
+    height: 75px;
+  }
+  100% {
+    height: 100px;
+  }
+}
+@keyframes long {
+  0% {
+    height: 120px;
+  }
+  50% {
+    height: 75px;
+  }
+  100% {
+    height: 50px;
+  }
+}

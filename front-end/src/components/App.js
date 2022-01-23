@@ -10,6 +10,8 @@ import Header from './Header';
 import Homepage from './Homepage';
 import Signup from './Signup';
 import Login from "./Login";
+import Tasks from './Tasks';
+
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -21,14 +23,16 @@ const store = createStore(reducers, { auth: { userInfo: localStorage.getItem("to
 const App = () => {
 
     return <div className='container'>
-        <Provider store={store}>
+        <Provider store={store} >
             <Router >
                 <Header />
                 <div className='homepage-container'>
                     <Routes >
                         <Route path="/" exact element={<Homepage />} />
-                        <Route path="/signup" element={<Signup />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" exact element={<Signup />} />
+                        <Route path="/login" exact element={<Login />} />
+                        {/* <Route path="/tasks" exact element={<Tasks />} /> */}
+
                     </Routes>
                 </div>
                 <Footer />
