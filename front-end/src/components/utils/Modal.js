@@ -5,18 +5,20 @@ import { Field } from "redux-form";
 import { reduxForm } from 'redux-form';
 import "../css/modal.css";
 import history from "./history";
-let Modal = ({ link, title, handleSubmit }) => {
+import requireAuth from "./requireAuth"
+let Modal = ({ link, title, handleSubmit, onSubmitTask }) => {
+
 
 
     return ReactDOM.createPortal(
         <div className="modal">
             <div className="modal-form">
-                <div className="modal-form-close"><button onClick={() => history.push(link)}>Close</button></div>
+                <div className="modal-form-close"><button onClick={() => history.push(link)}>🗙</button></div>
                 <div className="modal-form-title">
                     <h3>{title}</h3>
                 </div>
                 <div className="modal-form-description">
-                    <form className="modal-form-container" onSubmit={handleSubmit} >
+                    <form className="modal-form-container" onSubmit={handleSubmit(onSubmitTask)} >
 
                         <Field
                             className="form-container-title"
@@ -47,4 +49,4 @@ Modal = reduxForm({
     form: "task",
     enableReinitialize: true
 })(Modal)
-export default Modal;
+export default requireAuth(Modal);

@@ -21,9 +21,11 @@
   background-color: var(--orange);
   border: none;
   color: var(--main-font-color);
-  width: 10%;
+  width: 20%;
   height: 2em;
   border-radius: 10px;
+  text-align: center;
+  font-size: inherit;
 }
 /* Single task */
 .task {
