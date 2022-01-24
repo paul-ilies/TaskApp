@@ -17,6 +17,10 @@ export const tasks = (state = [], action) => {
             return { ...state, userTasks: action.payload }
         case FETCH_TASKS_ERROR:
             return { ...state, userTasks: action.payload }
+        case CREATE_TASK:
+            return { ...state, userTasks: action.payload }
+        case CREATE_TASK_ERROR:
+            return { ...state, userTasks: action.payload }
 
         default:
             return state;

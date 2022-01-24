@@ -12,6 +12,7 @@ import Signup from './Signup';
 import Login from "./Login";
 import Tasks from './Tasks';
 import history from "./utils/history";
+import CreateTask from './CreateTask';
 
 
 
@@ -33,7 +34,7 @@ const App = () => {
                         <Route path="/signup" exact component={Signup} />
                         <Route path="/login" exact component={Login} />
                         <Route path="/tasks" exact component={Tasks} />
-
+                        <Route path="/create-task" exact component={CreateTask} />
                     </Switch>
                 </div>
                 <Footer />

@@ -85,3 +85,25 @@ export const fetchTasks = () => async (dispatch, useState) => {
     }
 
 }
+
+export const createTask = (formValues) => async (dispatch, useState) => {
+    try {
+        const { userInfo } = useState().auth;
+        const configUser = {
+            headers: {
+                Authorization: `Bearer ${userInfo}`
+            }
+        }
+        const { data } = await axios.post("http://localhost:5000/task", { ...formValues }, configUser)
+
+        dispatch({
+            type: CREATE_TASK,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: CREATE_TASK_ERROR,
+            payload: error
+        })
+    }
+}

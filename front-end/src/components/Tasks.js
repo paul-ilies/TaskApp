@@ -24,7 +24,7 @@ const Tasks = () => {
             return (
                 <Task
                     key={el._id}
-                    title={el.title}
+                    title={el.title.toUpperCase()}
                     to={`/task/${el._id}`}
                 />
             )
@@ -40,7 +40,7 @@ const Tasks = () => {
     }
     return (<div className='tasks'>
         <div className="tasks-header"><h1>Tasks Dashboard</h1></div>
-        <div className="tasks-btn"><button onClick={() => history.push("/task")} >Add</button></div>
+        <div className="tasks-btn"><button onClick={() => history.push("/create-task")} >Add</button></div>
         {fetchData()}
 
 
