@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
@@ -11,6 +11,7 @@ import Homepage from './Homepage';
 import Signup from './Signup';
 import Login from "./Login";
 import Tasks from './Tasks';
+import history from "./utils/history";
 
 
 
@@ -24,16 +25,16 @@ const App = () => {
 
     return <div className='container'>
         <Provider store={store} >
-            <Router >
+            <Router history={history} >
                 <Header />
                 <div className='homepage-container'>
-                    <Routes >
-                        <Route path="/" exact element={<Homepage />} />
-                        <Route path="/signup" exact element={<Signup />} />
-                        <Route path="/login" exact element={<Login />} />
-                        {/* <Route path="/tasks" exact element={<Tasks />} /> */}
+                    <Switch >
+                        <Route path="/" exact component={Homepage} />
+                        <Route path="/signup" exact component={Signup} />
+                        <Route path="/login" exact component={Login} />
+                        <Route path="/tasks" exact component={Tasks} />
 
-                    </Routes>
+                    </Switch>
                 </div>
                 <Footer />
             </Router>

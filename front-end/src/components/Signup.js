@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from "../actions";
 import UserForm from './utils/UserForm';
-import { Navigate } from "react-router-dom";
+import history from "./utils/history"
 
 let Signup = ({ handleSubmit }) => {
     const [errorMessage, setErrorMessage] = useState("");
@@ -14,17 +14,10 @@ let Signup = ({ handleSubmit }) => {
 
     useEffect(() => {
         if (error) {
-            const errorTimer = setTimeout(() => {
-                setErrorMessage(error.response.data.error)
+            setErrorMessage(error.response.data.error)
+            setTimeout(() => {
+                setErrorMessage("")
             }, 2000)
-            // if error set the error as default from back-end
-            // setErrorMessage(error.response.data.error)
-            // setTimeout(() => {
-            //     setErrorMessage("")
-            // }, 2000)
-            return () => {
-                clearInterval(errorTimer)
-            }
         }
     }, [error])
 
@@ -38,13 +31,13 @@ let Signup = ({ handleSubmit }) => {
             <UserForm
                 onSubmit={handleSubmit(onSubmit)}
                 title="Sign Up"
-                buttonText="Sign Up"
+                buttonText="Register"
                 error={errorMessage}
 
             />
         </>
     } else {
-        return <Navigate to="/" />
+        history.push("/")
     }
 }
 

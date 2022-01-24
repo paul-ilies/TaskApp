@@ -35,3 +35,53 @@ export const signUp = (email, password) => async dispatch => {
         })
     }
 }
+
+export const signIn = ({ email, password }) => async dispatch => {
+    try {
+        const { data } = await axios.post("http://localhost:5000/login", { email, password }, config)
+        console.log(data)
+        dispatch({
+            type: AUTH_USER,
+            payload: data
+        })
+        localStorage.setItem("token", data.token)
+
+    } catch (error) {
+        dispatch({
+            type: AUTH_ERROR,
+            payload: error
+        })
+    }
+}
+
+export const signout = () => async dispatch => {
+
+    localStorage.removeItem("token")
+    dispatch({
+        type: AUTH_USER,
+        payload: ""
+    })
+}
+
+export const fetchTasks = () => async (dispatch, useState) => {
+    try {
+        const { userInfo } = useState().auth;
+        const configUser = {
+            headers: {
+                Authorization: `Bearer ${userInfo}`
+            }
+        }
+        const { data } = await axios.get("http://localhost:5000/tasks", configUser)
+
+        dispatch({
+            type: FETCH_TASKS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: FETCH_TASKS_ERROR,
+            payload: error
+        })
+    }
+
+}
