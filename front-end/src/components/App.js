@@ -13,6 +13,7 @@ import Login from "./Login";
 import Tasks from './Tasks';
 import history from "./utils/history";
 import CreateTask from './CreateTask';
+import TaskScreen from './TaskScreen';
 
 
 
@@ -35,6 +36,8 @@ const App = () => {
                         <Route path="/login" exact component={Login} />
                         <Route path="/tasks" exact component={Tasks} />
                         <Route path="/create-task" exact component={CreateTask} />
+                        <Route path="/tasks/:id" component={TaskScreen} />
+                        {/* <Redirect to="/" /> */}
                     </Switch>
                 </div>
                 <Footer />

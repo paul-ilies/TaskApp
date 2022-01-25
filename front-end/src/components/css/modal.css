@@ -25,11 +25,11 @@
   justify-content: flex-end;
 }
 .modal-form-close button {
-  margin: 1em;
+  /* margin: 1em; */
   color: var(--dark-red);
   background: transparent;
   border: none;
-
+  font-size: 1.5em;
   cursor: pointer;
 }
 
@@ -89,4 +89,5 @@
   height: 3em;
   border-radius: 2em;
   border: none;
+  cursor: pointer;
 }

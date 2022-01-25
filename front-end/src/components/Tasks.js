@@ -25,7 +25,7 @@ const Tasks = () => {
                 <Task
                     key={el._id}
                     title={el.title.toUpperCase()}
-                    to={`/task/${el._id}`}
+                    to={`/tasks/${el._id}`}
                 />
             )
         })

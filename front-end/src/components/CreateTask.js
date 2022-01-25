@@ -1,5 +1,4 @@
 import React from 'react';
-import "./css/createTask.css";
 import { useDispatch } from 'react-redux';
 import { createTask } from "../actions";
 import Modal from './utils/Modal';
@@ -19,12 +18,10 @@ const CreateTask = () => {
     return (
         <div>
             <Modal
-                title="Hello World"
+                title="Please add your task"
                 link="/tasks"
                 onSubmitTask={onSubmitTask}
             />
-
-
         </div>
     )
 };

@@ -107,3 +107,70 @@ export const createTask = (formValues) => async (dispatch, useState) => {
         })
     }
 }
+
+export const fetchTask = (id) => async (dispatch, useState) => {
+    try {
+        const { userInfo } = useState().auth;
+        const configUser = {
+            headers: {
+                Authorization: `Bearer ${userInfo}`
+            }
+        }
+
+        const { data } = await axios.get(`http://localhost:5000/tasks/${id}`, configUser)
+        dispatch({
+            type: FETCH_TASK,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: FETCH_TASK_ERROR,
+            payload: error
+        })
+    }
+}
+export const deleteTask = (id) => async (dispatch, useState) => {
+    try {
+        const { userInfo } = useState().auth;
+        const configUser = {
+            headers: {
+                Authorization: `Bearer ${userInfo}`
+            }
+        }
+
+        const { data } = await axios.delete(`http://localhost:5000/tasks/${id}`, configUser)
+        dispatch({
+            type: DELETE_TASK,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_TASK_ERROR,
+            payload: error
+        })
+    }
+}
+export const editTask = (id, formValues) => async (dispatch, useState) => {
+    try {
+        const { userInfo } = useState().auth;
+        const configUser = {
+            headers: {
+                Authorization: `Bearer ${userInfo}`
+            }
+        }
+
+        const { data } = await axios.patch(`http://localhost:5000/tasks/${id}`, { ...formValues }, configUser)
+        dispatch({
+            type: EDIT_TASK,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: EDIT_TASK_ERROR,
+            payload: error
+        })
+    }
+}
