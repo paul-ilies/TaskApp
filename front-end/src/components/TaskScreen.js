@@ -53,6 +53,10 @@ const TaskScreen = ({ match }) => {
         return <Loader />
     }
 
+    if (userTasks._id !== match.params.id) {
+        history.push("/tasks")
+    }
+
 
     return <div className='taskScreen-container'>
         <div className="taskScreen-title">

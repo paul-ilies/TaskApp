@@ -9,6 +9,11 @@
   display: flex;
   flex-direction: column;
 }
+@media only screen and (max-width: 800px) {
+  .tasks {
+    width: 100%;
+  }
+}
 .tasks-header h1 {
   text-align: center;
 }
@@ -36,6 +41,11 @@
   color: var(--main-font-color);
   display: flex;
   align-items: center;
+}
+@media only screen and (max-width: 800px) {
+  .task {
+    width: 100%;
+  }
 }
 .task-title {
   width: 80%;

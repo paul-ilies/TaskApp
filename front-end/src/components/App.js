@@ -14,6 +14,7 @@ import Tasks from './Tasks';
 import history from "./utils/history";
 import CreateTask from './CreateTask';
 import TaskScreen from './TaskScreen';
+import PageNotFound from './PageNotFound';
 
 
 
@@ -37,7 +38,9 @@ const App = () => {
                         <Route path="/tasks" exact component={Tasks} />
                         <Route path="/create-task" exact component={CreateTask} />
                         <Route path="/tasks/:id" component={TaskScreen} />
-                        {/* <Redirect to="/" /> */}
+                        <Route path="*">
+                            <PageNotFound />
+                        </Route>
                     </Switch>
                 </div>
                 <Footer />
