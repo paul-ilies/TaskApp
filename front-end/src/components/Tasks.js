@@ -14,12 +14,15 @@ const Tasks = () => {
     const { userTasks } = useSelector(state => state.tasks)
 
 
+
     useEffect(() => {
         dispatch(fetchTasks())
 
     }, [])
 
+
     const fetchData = () => {
+
         return userTasks.map(el => {
             return (
                 <Task
@@ -32,12 +35,12 @@ const Tasks = () => {
     }
 
 
-
     if (!userTasks) {
         return (
             <Loader />
         )
     }
+
     return (<div className='tasks'>
         <div className="tasks-header"><h1>Tasks Dashboard</h1></div>
         <div className="tasks-btn"><button onClick={() => history.push("/create-task")} >Add</button></div>

@@ -22,7 +22,7 @@ const config = {
 
 export const signUp = (email, password) => async dispatch => {
     try {
-        const { data } = await axios.post("http://localhost:5000/signup", { email, password }, config)
+        const { data } = await axios.post("/signup", { email, password }, config)
 
         dispatch({
             type: AUTH_USER,
@@ -38,7 +38,7 @@ export const signUp = (email, password) => async dispatch => {
 
 export const signIn = ({ email, password }) => async dispatch => {
     try {
-        const { data } = await axios.post("http://localhost:5000/login", { email, password }, config)
+        const { data } = await axios.post("/login", { email, password }, config)
         console.log(data)
         dispatch({
             type: AUTH_USER,
@@ -71,7 +71,8 @@ export const fetchTasks = () => async (dispatch, useState) => {
                 Authorization: `Bearer ${userInfo}`
             }
         }
-        const { data } = await axios.get("http://localhost:5000/tasks", configUser)
+
+        const { data } = await axios.get("/tasks", configUser)
 
         dispatch({
             type: FETCH_TASKS,
@@ -94,7 +95,7 @@ export const createTask = (formValues) => async (dispatch, useState) => {
                 Authorization: `Bearer ${userInfo}`
             }
         }
-        const { data } = await axios.post("http://localhost:5000/task", { ...formValues }, configUser)
+        const { data } = await axios.post("/task", { ...formValues }, configUser)
 
         dispatch({
             type: CREATE_TASK,
@@ -117,7 +118,7 @@ export const fetchTask = (id) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.get(`http://localhost:5000/tasks/${id}`, configUser)
+        const { data } = await axios.get(`/tasks/${id}`, configUser)
         dispatch({
             type: FETCH_TASK,
             payload: data
@@ -139,7 +140,7 @@ export const deleteTask = (id) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.delete(`http://localhost:5000/tasks/${id}`, configUser)
+        const { data } = await axios.delete(`/tasks/${id}`, configUser)
         dispatch({
             type: DELETE_TASK,
             payload: data
@@ -161,7 +162,7 @@ export const editTask = (id, formValues) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.patch(`http://localhost:5000/tasks/${id}`, { ...formValues }, configUser)
+        const { data } = await axios.patch(`/tasks/${id}`, { ...formValues }, configUser)
         dispatch({
             type: EDIT_TASK,
             payload: data

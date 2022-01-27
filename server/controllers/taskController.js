@@ -39,6 +39,7 @@ const getTaskById = async (req, res) => {
         if (!task) {
             res.status(404).send()
         }
+
         res.send(task);
     } catch (error) {
         res.status(500).send(error)
