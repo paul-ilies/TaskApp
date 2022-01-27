@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "engines": {
-    "node": "14.15.0"
-  },
   "scripts": {
     "server": "node server/server",
     "client": "npm run start --prefix front-end",
