@@ -11,10 +11,10 @@ const { createTask,
 
 const router = express.Router();
 
-router.post("/task", auth, createTask)
-router.get("/tasks", auth, getAllTasks)
-router.get("/tasks/:id", auth, getTaskById)
-router.patch("/tasks/:id", auth, updateTask)
-router.delete("/tasks/:id", auth, deleteTask)
+router.post("/task/v1", auth, createTask)
+router.get("/tasks/v1", auth, getAllTasks)
+router.get("/tasks/:id/v1", auth, getTaskById)
+router.patch("/tasks/:id/v1", auth, updateTask)
+router.delete("/tasks/:id/v1", auth, deleteTask)
 
 module.exports = router

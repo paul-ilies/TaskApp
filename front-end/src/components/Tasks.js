@@ -20,7 +20,7 @@ const Tasks = () => {
 
     }, [])
 
-
+    console.log(userTasks)
     const fetchData = () => {
 
         return userTasks.map(el => {

@@ -72,7 +72,7 @@ export const fetchTasks = () => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.get("/tasks", configUser)
+        const { data } = await axios.get("/tasks/v1", configUser)
 
         dispatch({
             type: FETCH_TASKS,
@@ -95,7 +95,7 @@ export const createTask = (formValues) => async (dispatch, useState) => {
                 Authorization: `Bearer ${userInfo}`
             }
         }
-        const { data } = await axios.post("/task", { ...formValues }, configUser)
+        const { data } = await axios.post("/task/v1", { ...formValues }, configUser)
 
         dispatch({
             type: CREATE_TASK,
@@ -118,7 +118,7 @@ export const fetchTask = (id) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.get(`/tasks/${id}`, configUser)
+        const { data } = await axios.get(`/tasks/${id}/v1`, configUser)
         dispatch({
             type: FETCH_TASK,
             payload: data
@@ -140,7 +140,7 @@ export const deleteTask = (id) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.delete(`/tasks/${id}`, configUser)
+        const { data } = await axios.delete(`/tasks/${id}/v1`, configUser)
         dispatch({
             type: DELETE_TASK,
             payload: data
@@ -162,7 +162,7 @@ export const editTask = (id, formValues) => async (dispatch, useState) => {
             }
         }
 
-        const { data } = await axios.patch(`/tasks/${id}`, { ...formValues }, configUser)
+        const { data } = await axios.patch(`/tasks/${id}/v1`, { ...formValues }, configUser)
         dispatch({
             type: EDIT_TASK,
             payload: data
