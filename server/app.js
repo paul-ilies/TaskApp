@@ -4,7 +4,8 @@ const cors = require("cors");
 const path = require("path")
 const tasksRouter = require("./routers/taskRouter");
 const userRouter = require("./routers/userRouter");
-const { dirname } = require("path");
+const dotenv = require("dotenv");
+const { connectDB } = require("./db");
 
 const app = express();
 
@@ -12,11 +13,10 @@ app.use(express.json());
 app.use(morgan("combined"));
 app.use(cors());
 
+dotenv.config({ path: path.resolve(__dirname, "./.env") })
+connectDB()
 
-app.use("/", express.static(path.join(__dirname, "..", "front-end", "build")))
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "front-end", "build", "index.html"))
-})
+
 
 app.use(tasksRouter)
 app.use(userRouter)
