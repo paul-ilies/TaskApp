@@ -2,7 +2,7 @@
   "name": "taskapp",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node server/server",
     "client": "npm run start --prefix front-end",
@@ -25,5 +25,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "validator": "^13.7.0"
+  },
+  "engines": {
+    "node": "14.15.0"
   }
 }
