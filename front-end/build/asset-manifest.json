@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e562aee3.css",
+    "main.js": "/static/js/main.c7da5944.js",
+    "static/media/roboto-v29-latin-100.svg": "/static/media/roboto-v29-latin-100.e01cd966ac5c6da9f7cf.svg",
+    "static/media/roboto-v29-latin-regular.svg": "/static/media/roboto-v29-latin-regular.1b1af1e4b3a278058097.svg",
+    "static/media/roboto-v29-latin-900.svg": "/static/media/roboto-v29-latin-900.65e4130af17899facd7e.svg",
+    "static/media/roboto-v29-latin-100.ttf": "/static/media/roboto-v29-latin-100.3bba7d385bd97e54b16d.ttf",
+    "static/media/roboto-v29-latin-regular.ttf": "/static/media/roboto-v29-latin-regular.69358f64aea6fd09499a.ttf",
+    "static/media/roboto-v29-latin-900.ttf": "/static/media/roboto-v29-latin-900.016d066a4b4b66177e65.ttf",
+    "static/media/roboto-v29-latin-100.woff": "/static/media/roboto-v29-latin-100.9391e6e27e41ec761fe1.woff",
+    "static/media/roboto-v29-latin-900.woff": "/static/media/roboto-v29-latin-900.b555d2282352d94691bc.woff",
+    "static/media/roboto-v29-latin-regular.woff": "/static/media/roboto-v29-latin-regular.9b78ea3bc4f00e508f01.woff",
+    "static/media/roboto-v29-latin-100.eot": "/static/media/roboto-v29-latin-100.cfeaadddd30a8779c54f.eot",
+    "static/media/roboto-v29-latin-regular.eot": "/static/media/roboto-v29-latin-regular.160fbc69802809bdb0ef.eot",
+    "static/media/roboto-v29-latin-900.eot": "/static/media/roboto-v29-latin-900.491f985a9c0ae63d8176.eot",
+    "static/media/roboto-v29-latin-900.woff2": "/static/media/roboto-v29-latin-900.153ba331429b872012a6.woff2",
+    "static/media/roboto-v29-latin-100.woff2": "/static/media/roboto-v29-latin-100.25385d9f52e1ff5e8883.woff2",
+    "static/media/roboto-v29-latin-regular.woff2": "/static/media/roboto-v29-latin-regular.4673b4537a84c7f7a130.woff2",
+    "index.html": "/index.html",
+    "main.e562aee3.css.map": "/static/css/main.e562aee3.css.map",
+    "main.c7da5944.js.map": "/static/js/main.c7da5944.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e562aee3.css",
+    "static/js/main.c7da5944.js"
+  ]
+}
