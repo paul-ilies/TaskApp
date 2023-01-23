@@ -7,7 +7,12 @@ const createUser = async (req, res) => {
     const token = user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (error) {
-    res.status(409).send({ error: "Ooops something went wrong!" });
+    if (error.code === 11000) {
+      return res.status(409).send({ error: "Email already exists." });
+    }
+    res
+      .status(500)
+      .send({ error: "An error occurred while creating the user." });
   }
 };
 
@@ -19,21 +24,26 @@ const loginUser = async (req, res) => {
     const token = await user.generateAuthToken();
     res.send({ user, token });
   } catch (error) {
-    res
-      .status(400)
-      .send({ error: "Your username and/or password do not match" });
+    if (error.name === "UserNotFoundError") {
+      return res.status(401).send({ error: "Invalid credentials." });
+    }
+    res.status(500).send({ error: "An error occurred while logging in." });
   }
 };
 
 const logout = async (req, res) => {
   try {
-    req.user.tokens = req.user.tokens.filter(
-      (token) => token.token !== req.token
+    await User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+        $pull: {
+          tokens: { token: req.token },
+        },
+      }
     );
-    await req.user.save();
     res.send();
   } catch (error) {
-    res.status(500).send();
+    res.status(500).send({ error: "An error occurred while logging out." });
   }
 };
 

@@ -2,95 +2,93 @@ const Task = require("../models/tasksModel");
 
 //create Task
 const createTask = async (req, res) => {
-    //create task by req.body and who own's the task
+  try {
     const task = new Task({
-        ...req.body,
-        owner: req.user._id
+      ...req.body,
+      owner: req.user._id,
     });
-
-    try {
-        await task.save();
-        res.status(201).send(task)
-
-    } catch (error) {
-        res.status(500).send(error)
-
-    }
-}
+    await task.save();
+    res.status(201).send(task);
+  } catch (error) {
+    res.status(500).send("An error occurred while creating the task.");
+  }
+};
 
 //read all tasks
 const getAllTasks = async (req, res) => {
-
-    try {
-        const tasks = await Task.find({ owner: req.user._id })
-        res.send(tasks)
-    } catch (error) {
-        res.status(500).send(error)
-    }
-}
-
+  try {
+    const tasks = await Task.find({ owner: req.user._id });
+    res.send(tasks);
+  } catch (error) {
+    res.status(500).send("An error occurred while fetching the tasks.");
+  }
+};
 
 //read task by id
 const getTaskById = async (req, res) => {
-    const _id = req.params.id;
-
-    try {
-        const task = await Task.findOne({ _id, owner: req.user._id });
-        if (!task) {
-            res.status(404).send()
-        }
-
-        res.send(task);
-    } catch (error) {
-        res.status(500).send(error)
-
+  try {
+    const task = await Task.findOne({
+      _id: req.params.id,
+      owner: req.user._id,
+    }).orFail();
+    res.send(task);
+  } catch (error) {
+    if (error.name === "DocumentNotFoundError") {
+      res.status(404).send("Task not found.");
+    } else {
+      res.status(500).send("An error occurred while fetching the task.");
     }
-}
+  }
+};
 
 //update task by id and owner
 const updateTask = async (req, res) => {
-    //get keys object
-    const updates = Object.keys(req.body);
-    //add allowed keys for update purpose
-    const allowedUpdates = ["title", "description", "completed"];
-    //allow verification if allowedUpdates includes the update
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update))
+  const updates = Object.keys(req.body);
+  const allowedUpdates = ["title", "description", "completed"];
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+  if (!isValidOperation) {
+    return res.status(400).send({ error: "Invalid updates" });
+  }
 
-    //if no operation is valid return error
-    if (!isValidOperation) {
-        return res.status(400).send({ error: "Invalid updates" })
+  try {
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+      context: "query",
+    }).orFail();
+    res.send(task);
+  } catch (error) {
+    if (error.name === "DocumentNotFoundError") {
+      res.status(404).send("Task not found.");
+    } else {
+      res.status(500).send("An error occurred while updating the task.");
     }
-
-    try {
-        //create task for validation
-        const task = await Task.findOne({ _id: req.params.id, owner: req.user._id })
-        if (!task) {
-            return res.status(404).send()
-        }
-        //allow update
-        updates.forEach(update => {
-            task[update] = req.body[update];
-        })
-        await task.save()
-        res.send(task);
-
-    } catch (error) {
-        res.status(400).send(error)
-    }
-}
+  }
+};
 
 //delete task
 const deleteTask = async (req, res) => {
-    try {
-        const task = await Task.findOneAndDelete({ _id: req.params.id, owner: req.user._id });
-        if (!task) {
-            res.status(404).send()
-        }
-        res.send(task)
-
-    } catch (error) {
-        res.status(400).send(error)
+  try {
+    const task = await Task.findOneAndDelete({
+      _id: req.params.id,
+      owner: req.user._id,
+    }).orFail();
+    res.send(task);
+  } catch (error) {
+    if (error.name === "DocumentNotFoundError") {
+      res.status(404).send("Task not found.");
+    } else {
+      res.status(500).send("An error occurred while deleting the task.");
     }
-}
+  }
+};
 
-module.exports = { createTask, getAllTasks, getTaskById, updateTask, deleteTask }
+module.exports = {
+  createTask,
+  getAllTasks,
+  getTaskById,
+  updateTask,
+  deleteTask,
+};
